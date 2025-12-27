@@ -14,7 +14,7 @@ export default function Home() {
   useEffect(() => {
     async function load() {
       try {
-        const res = await fetch("http://localhost:3000/api/v0/todo/getAllTask");
+        const res = await fetch("https://todo-frontend-chi-lyart.vercel.app/api/v0/todo/getAllTask");
         if (!res.ok) {
           console.error("Failed fetching tasks:", res.status);
           return;
@@ -44,7 +44,7 @@ export default function Home() {
   async function deleteTask(taskId) {
     try {
       const res = await fetch(
-        `http://localhost:3000/api/v0/todo/deleteTask/${taskId}`,
+        `https://todo-frontend-chi-lyart.vercel.app/api/v0/todo/deleteTask/${taskId}`,
         { method: "DELETE" }
       );
       if (!res.ok) {
@@ -68,7 +68,7 @@ export default function Home() {
     const newStatus = task.status === "completed" ? "pending" : "completed";
     try {
       const res = await fetch(
-        `http://localhost:3000/api/v0/todo/updateTask/${task._id}`,
+        `https://todo-frontend-chi-lyart.vercel.app/api/v0/todo/updateTask/${task._id}`,
         {
           method: "PUT",
           headers: { "Content-Type": "application/json" },

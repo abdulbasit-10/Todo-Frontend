@@ -10,7 +10,7 @@ export default function AddTask({ onAdd }) {
     if (!title.trim()) return;
     setLoading(true);
     try {
-      const res = await fetch("http://localhost:3000/api/v0/todo/postTask", {
+      const res = await fetch("https://todo-frontend-chi-lyart.vercel.app/api/v0/todo/postTask", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ task: title, priority, status: "pending" }),
