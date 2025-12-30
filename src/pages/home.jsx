@@ -6,7 +6,7 @@ import Stats from "../components/stats";
 export default function Home() {
   const [tasks, setTasks] = useState([]);
   const [filter, setFilter] = useState([]); // start empty, then sync
-
+  const baseurl = "https://todo-backend-vert-one.vercel.app";
   // keep a small "activeFilter" key if you want to show which pill is selected
   const [activeFilter, setActiveFilter] = useState("All Tasks");
 
@@ -14,7 +14,7 @@ export default function Home() {
   useEffect(() => {
     async function load() {
       try {
-        const res = await fetch("https://todo-backend-y8td46jqt-abdul-basits-projects-b650ce22.vercel.app/api/v0/todo/getAllTask");
+        const res = await fetch(`${baseurl}/api/v0/todo/getAllTask`);
         if (!res.ok) {
           console.error("Failed fetching tasks:", res.status);
           return;
@@ -44,7 +44,7 @@ export default function Home() {
   async function deleteTask(taskId) {
     try {
       const res = await fetch(
-        `https://todo-backend-y8td46jqt-abdul-basits-projects-b650ce22.vercel.app/api/v0/todo/deleteTask/${taskId}`,
+        `${baseurl}/api/v0/todo/deleteTask/${taskId}`,
         { method: "DELETE" }
       );
       if (!res.ok) {
@@ -68,7 +68,7 @@ export default function Home() {
     const newStatus = task.status === "completed" ? "pending" : "completed";
     try {
       const res = await fetch(
-        `https://todo-backend-y8td46jqt-abdul-basits-projects-b650ce22.vercel.app/api/v0/todo/updateTask/${task._id}`,
+        `${baseurl}/api/v0/todo/updateTask/${task._id}`,
         {
           method: "PUT",
           headers: { "Content-Type": "application/json" },
